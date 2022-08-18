@@ -5,7 +5,11 @@ const connectionString = 'mongodb+srv://ccantoran1:<password>@cluster0.4ccuni0.m
 
 MongoClient.connect(connectionString, (err, 
     client) => {
+<<<<<<< HEAD
         //change 3
+=======
+        //change 2
+>>>>>>> f907f6ea48e096b91c4b6e060f949d8c2215ce2a
     })
 
 app.listen(3000, function(){
