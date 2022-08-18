@@ -1,16 +1,17 @@
 const express = require('express');
 const app = express();
+const dotenv = require('dotenv')
+dotenv.config()
 const MongoClient = require('mongodb').MongoClient
-const connectionString = 'mongodb+srv://ccantoran1:<password>@cluster0.4ccuni0.mongodb.net/?retryWrites=true&w=majority'
+const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.4ccuni0.mongodb.net/?retryWrites=true&w=majority`
 
-MongoClient.connect(connectionString, (err, 
-    client) => {
-<<<<<<< HEAD
-        //change 3
-=======
-        //change 2
->>>>>>> f907f6ea48e096b91c4b6e060f949d8c2215ce2a
-    })
+MongoClient.connect(connectionString, { useUnifiedTopology: true })
+  .then(client => {
+    console.log('Connected to Database')
+    const db = client.db('drivers')
+  })
+  .catch(error => console.error(error))
+
 
 app.listen(3000, function(){
     console.log('listening on 3000')
