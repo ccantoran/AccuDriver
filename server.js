@@ -9,15 +9,17 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database')
     const db = client.db('drivers')
-    //check
   })
   .catch(error => console.error(error))
 
-
-app.listen(3000, function(){
-    console.log('listening on 3000')
-})
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 app.get('/',(req, res) => {
-    res.sendFile(__dirname +  '/index.html')
+    res.sendFile(__dirname + '/index.html')
+})
+
+app.listen(3000, function(){
+  console.log('listening on 3000')
 })
