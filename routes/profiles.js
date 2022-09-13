@@ -7,10 +7,10 @@ router.get('/', ensureAuth, profilesController.getProfile)
 
 router.post('/createProfile', profilesController.createProfile)
 
-router.put('/markComplete', profilesController.markComplete)
+// router.put('/markComplete', profilesController.markComplete)
 
-router.put('/markIncomplete', profilesController.markIncomplete)
+// router.put('/markIncomplete', profilesController.markIncomplete)
 
-router.delete('/deleteProfile', profilesController.deleteProfile)
+// router.delete('/deleteProfile', profilesController.deleteProfile)
 
 module.exports = router

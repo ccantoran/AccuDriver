@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const ProfileSchema = new mongoose.Schema({
-  todo: {
+  driverName: {
     type: String,
     required: true,
   },
@@ -11,8 +11,8 @@ const ProfileSchema = new mongoose.Schema({
   },
   userId: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 
-module.exports = mongoose.model('Profile', ProfileSchema)
+module.exports = mongoose.model('Profiles', ProfileSchema)

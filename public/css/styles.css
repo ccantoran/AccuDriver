@@ -26,52 +26,10 @@ body{
 /*////////////////////////////////////////////////////////////////////////
                                 MAIN
 ////////////////////////////////////////////////////////////////////////*/
-main{
-    border: red solid;
-    height: 700px;
-    text-align: center;
-}
-.profile-grid{
-    border: purple solid;
-    height: 700px;
-    --gap:5px;
-    --num-cols: 1;
-    --row-height: 50px;
-    padding: var(--gap);
-    display:grid;
-    grid-template-columns: repeat(var(--num-cols), 1fr);
-    grid-auto-rows: var(--row-height);
-    gap:var(--gap);
-    column-gap: 35px;
-    row-gap: 5px;
-}
-.grid-row-8{
-    grid-row: span 8;
-}
-.grid-row-1{
-    grid-row: span 1;
-}
-#driverCreate{
-    display:none;
-}
-.profile-grid>li{
-    border: yellow solid;
-    height: fit-content;
+form{
     display:flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
+    border: red solid;
+    height: 200px;
 }
-.box>img{
-    width:200px;
-}
-
-@media (min-width: 600px) and (max-width:1100px){
-    .profile-grid{
-        --num-cols : 2;
-    }
-}
-    @media(min-width:1101px) and (max-width:1500px){
-        .profile-grid{
-            --num-cols: 3;
-        }
-    }
