@@ -8,28 +8,31 @@
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <!-- external fonts -->
     <script src="https://kit.fontawesome.com/59c032d6c4.js" crossorigin="anonymous"></script>
-    <!-- <script src="/public/js/main.js" defer></script> -->
+    <script src="/js/main.js" defer></script>
     <title>AccuDriver</title>
 </head>
 <body>
-    <nav>
-        <div class="openMenu"><i class="fa fa-bars"></i></div>
-        <div class="navDiv">
-            <div class="logo">
-                <div>
-                    <h1>AccuDriver</h1>
-                </div>
-            </div>
-            <ul>
-                <li class="firstli"><a href="#">About</a></li>
-                <li class="secondli"><a href="#">Dashboard</a></li>
-                <div class="closeMenu"><i class="fa fa-times"></i></div>
-            </ul>
+    <h1>AccuDriver</h1>
+
+           <ul>
             <% profiles.forEach( el => { %>
                 <li data-id='<%=el._id%>'>
                     <div><%= el.driverName %></div>
 
-                    <!-- stop watch here -->
+                    
+            
+                    <div class="watch">
+                        <div class="time">
+                            00:00:00:00
+                        </div>
+                        <div class="controls">
+                            <button id="start">start</button>
+                            <button id="stop">stop</button>
+                            <button id="reset">reset</button>
+                        </div>
+                    </div>
+
+                    <span class="ttime"></span>
                     <span class='del'> Delete </span>
 
                 </li>
@@ -41,13 +44,14 @@
                 <div>
                     Driver's Name
                     <input type="text" placeholder="enter driver name" name='driverName'>
-                    Owner Operator?
-                    <input type="text" placeholder="enter driver name" name='driverName'>
+                    <!-- Owner Operator?
+                    <input type="text" placeholder="enter driver name" name='driverName'> -->
+                    <input type="submit">
                 </div>
                 
             </form>
-        </div>
-    </nav>
+
+    
     
     
 </body>
