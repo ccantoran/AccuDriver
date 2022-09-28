@@ -18,18 +18,111 @@ ul{
 body{
     padding:0;
     margin:0;
+    font-family: "Noto Sans";
+    font-size: 14px;
+    --main-color:#004AAD;
+    --aux-color:#FF1616;
 }
-/*////////////////////////////////////////////////////////////////////////
-                                NAV
-////////////////////////////////////////////////////////////////////////*/
 
 /*////////////////////////////////////////////////////////////////////////
-                                MAIN
+                                /
 ////////////////////////////////////////////////////////////////////////*/
-form{
-    display:flex;
+.login-background{
+    background-image: url(/img/truck3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 750px;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    border: red solid;
-    height: 200px;
+    justify-content: center;
 }
+.login-block{
+    border-radius: 10%;
+    color:black;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:55%;
+    width: 40%;
+    text-align: center;
+}
+.login-block>img{
+    width:200px;
+    border-radius: 10%;
+}
+.login-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:10%;
+}
+.login-button>a{
+    border:grey solid;
+    background-color: grey;
+    padding:2%;
+    border-radius: 10%;
+    margin-top: 5%;
+    color:white;
+}
+.login-button>a:hover{
+    background:var(--main-color);
+    border:var(--main-color);
+}
+
+/*////////////////////////////////////////////////////////////////////////
+                                /login
+///////////////////////////////////////////////////////////////////////*/
+
+.margin-5{
+    margin-top: 5%;
+}
+
+/*////////////////////////////////////////////////////////////////////////
+                                /signup
+///////////////////////////////////////////////////////////////////////*/
+
+.margin-3{
+    margin-top: 3%;
+}
+.height-fit{
+    height: fit-content;
+}
+.side-padding{
+    padding: 0 5px;
+}
+.margin-bot{
+    margin-bottom: 3px;
+}
+
+/*////////////////////////////////////////////////////////////////////////
+                                /dashboard
+///////////////////////////////////////////////////////////////////////*/
+
+/*///////////NAV//////*/
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav>img{
+    width: 150px;
+    margin-left:20px;
+}
+.nav-div{
+    margin-right: 20px;
+    text-align: right;
+}
+
+.nav-div>p{
+    font-size: 18px;
+} 
+.nav-div>a:hover{
+    color:var(--aux-color)
+}
+
+
+/*///////////MAIN//////*/

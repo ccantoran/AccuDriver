@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- external font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/jpg" href="img/favi.png?v=1"/>
+  <title>AccuDriver Dashboard</title>
+</head>
+<body>
+  <nav>
+    <img src="img/nav.png">
+    <div class="nav-div">
+      <p>Welcome <strong><%= user.userName %></strong>!</p>
+      <a href="/logout">Logout</a>
+    </div>
+  </nav>
+       
+    
+            <div class="add-driver">
+              <h2>Add a Driver</h2>
+              <form action="/driver/createDriver" enctype="multipart/form-data" method="POST">
+                <div>
+                  <label for="imgUpload">Image</label>
+                  <input type="file" id="imageUpload" name="file">
+                </div>
+
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <button type="submit" value="Upload">Submit</button>
+              </form>
+            </div>
+
+
+
+
+
+  
+        <div>
+            <ul>
+            <% for(var i=0; i<drivers.length; i++) {%>
+  
+              <li>
+                <div><%= drivers[i].name %></div>
+                <a href="/driver/<%= drivers[i]._id%>">
+                  <img src="<%= drivers[i].image%>">
+                </a>
+              </li>
+  
+              <form
+                action="/driver/startTime/<%= drivers.id %>?_method=PUT"
+                method="POST"
+              >
+                <button>Start Driving</button>
+                <button>Stop Driving</button>
+              </form>
+            <% } %>
+            </ul>
+          <div>
+        
+          </div>  
+        </div> 
+        
+        
+
+      </div>
+
+
+
+</body>
+</html>

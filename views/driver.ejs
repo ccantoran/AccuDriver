@@ -1,0 +1,28 @@
+
+<div>
+  
+    <div>
+      <img src="<%= driver.image%>" />
+      <div><%= driver.name %></div>
+
+      <%if(driver.user == user.id){ %>
+        <form
+          action="/driver/deleteDriver/<%= driver.id %>?_method=DELETE"
+          method="POST"
+        >
+          <button>X</button>
+        </form>
+      <%}%>
+
+
+      
+    </form>
+
+
+
+    </div>
+
+    <div>
+      <a href="/dashboard">Return to Dashboard</a>
+    </div>
+</div>
