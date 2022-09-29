@@ -11,6 +11,9 @@ router.post("/createDriver", upload.single("file"), driversController.createDriv
 
 router.delete("/deleteDriver/:id", driversController.deleteDriver);
 
-// router.post("/createDriver", upload.single("file"), driversController.createDriver);
+router.post("/start/:_id", driversController.startTime);
+router.post("/stop/:_id", driversController.stopTime);
+
+
 
 module.exports = router;

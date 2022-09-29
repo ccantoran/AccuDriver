@@ -22,6 +22,7 @@ body{
     font-size: 14px;
     --main-color:#004AAD;
     --aux-color:#FF1616;
+    --background-color:#B6D1F6;
 }
 
 /*////////////////////////////////////////////////////////////////////////
@@ -107,6 +108,8 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 80px;
+    border-bottom: 1px grey solid;
 }
 nav>img{
     width: 150px;
@@ -116,13 +119,92 @@ nav>img{
     margin-right: 20px;
     text-align: right;
 }
-
 .nav-div>p{
     font-size: 18px;
+    margin:0;
 } 
+.nav-div>a{
+    padding-bottom: 10px;
+    height: fit-content;
+}
 .nav-div>a:hover{
     color:var(--aux-color)
 }
 
 
 /*///////////MAIN//////*/
+.dashboard-main{
+    display: flex;
+    height: 900px;
+    justify-content: space-around;
+    background-image: url(/img/background1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--background-color);
+}
+.driver-grid{
+    margin-top: 15%;
+    height: fit-content;
+    list-style-type: none;
+    padding-left:0;
+    --gap:15px;
+    --num-cols:2;
+    --row-height: 300px;
+    box-sizing: border-box;
+    padding: var(--gap);
+    display:grid;
+    grid-template-columns: repeat(var(--num-cols), 1fr);
+    grid-auto-rows: var(--row-height);
+    column-gap: 20px;
+    row-gap: 20px;
+    width:fit-content;
+}
+.driver-grid>li{
+    background:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    border-radius: 10%;
+    box-shadow: 2px 2px 2px rgb(175, 175, 175);
+}
+.driver-img{
+    width: 130px;
+    border-radius: 40%;
+}
+.bold{
+    font-weight: 600;
+    font-size: 18px;
+}
+/*///////////FOOTER//////*/
+footer{
+    height:100px;
+}
+
+
+
+
+/*////////////////////////////////////////////////////////////////////////
+                                /driver
+///////////////////////////////////////////////////////////////////////*/
+.driver-main{
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height:600px;
+}
+.profile-panel{
+    background:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    border-radius: 10%;
+    height: 50%;
+    width: 50%;
+    box-shadow: 2px 2px 2px rgb(175, 175, 175);
+}

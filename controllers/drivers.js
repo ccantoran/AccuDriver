@@ -1,11 +1,22 @@
 const cloudinary = require("../middleware/cloudinary");
 const Driver = require("../models/Driver");
+const Start = require("../models/Start")
+const Stop = require("../models/Stop")
+
 
 module.exports = {
   getDashboard: async (req, res) => {
     try {
       const drivers = await Driver.find({ user: req.user.id });
       res.render("dashboard.ejs", { drivers: drivers, user: req.user });
+
+
+
+      // const driveTime = await Start.find({})
+      // res.render("dashboard.ejs")
+
+
+
     } catch (err) {
       console.log(err);
     }
@@ -28,7 +39,6 @@ module.exports = {
         cloudinaryId: result.public_id,
         name: req.body.name,
         user: req.user.id,
-        time: 0,
       });
       console.log("Driver has been added!");
       res.redirect("/dashboard");
@@ -48,6 +58,30 @@ module.exports = {
       res.redirect("/dashboard");
     } catch (err) {
       res.redirect("/dashboard");
+    }
+  },
+  startTime: async (req, res) => {
+    try {
+      await Start.create({
+        time: Date.now(),
+        id:req.params._id,
+      });
+      console.log("Start time has been added!");
+      res.redirect("/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  stopTime: async (req, res) => {
+    try {
+      await Stop.create({
+        time: Date.now(),
+        id:req.params._id,
+      });
+      console.log("Stop time has been added!");
+      res.redirect("/dashboard");
+    } catch (err) {
+      console.log(err);
     }
   },
 };

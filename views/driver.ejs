@@ -1,28 +1,49 @@
-
-<div>
-  
-    <div>
-      <img src="<%= driver.image%>" />
-      <div><%= driver.name %></div>
-
-      <%if(driver.user == user.id){ %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- external font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/jpg" href="img/favi.png?v=1"/>
+  <title>AccuDriver Driver Profile</title>
+</head>
+<body>
+  <nav>
+    <img src="/img/nav.png">
+    <div class="nav-div">
+      <p>Welcome <strong><%= user.userName %></strong>!</p>
+      <a href="/logout">Logout</a>
+    </div>
+  </nav>
+  <main class="driver-main">
+    <div class="profile-panel">
+      <div class="bold"><%= driver.name %></div>
+    <img src="<%= driver.image%>" class="driver-img"/>
+    
+    <%if(driver.user == user.id){ %>
         <form
           action="/driver/deleteDriver/<%= driver.id %>?_method=DELETE"
           method="POST"
         >
-          <button>X</button>
+          <button>delete driver?</button>
         </form>
       <%}%>
-
-
-      
-    </form>
-
-
-
     </div>
 
     <div>
       <a href="/dashboard">Return to Dashboard</a>
     </div>
-</div>
+  </main>
+  
+
+
+
+
+</body>
+</html>

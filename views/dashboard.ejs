@@ -21,59 +21,53 @@
       <a href="/logout">Logout</a>
     </div>
   </nav>
-       
-    
-            <div class="add-driver">
-              <h2>Add a Driver</h2>
-              <form action="/driver/createDriver" enctype="multipart/form-data" method="POST">
-                <div>
-                  <label for="imgUpload">Image</label>
-                  <input type="file" id="imageUpload" name="file">
-                </div>
+  <main class="dashboard-main">
+  
+      <ul class="driver-grid">
 
-                <div>
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name">
-                </div>
-                <button type="submit" value="Upload">Submit</button>
-              </form>
+
+      <% for(var i=0; i<drivers.length; i++) {%>
+        <li>
+          <div class="bold"><%= drivers[i].name %></div>
+          <a href="/driver/<%= drivers[i]._id%>">
+            <img class="driver-img" src="<%= drivers[i].image%>">
+          </a>
+
+          <form action="/driver/start/<%= drivers[i]._id%>" method="POST">
+            <button class="margin-3">start</button>
+          </form>
+          <form action="/driver/stop/<%= drivers[i]._id%>" method="POST">
+            <button class="margin-3">stop</button>
+          </form>
+         
+          
+
+
+        </li>
+      <% } %>
+
+
+        <li>
+          <div class="bold">Add a Driver</div>
+          <img class="driver-img" src="img/blank.png">
+          <form action="/driver/createDriver" enctype="multipart/form-data" method="POST" class="add-driver">
+            <div class="upload-file">
+             <input type="file" id="imageUpload" name="file">
             </div>
 
+            <div>
+              <label for="name">Enter name</label>
+               <input type="text" id="name" name="name" class="margin-3">
+            </div>
+            <button type="submit" value="Upload" class="margin-3">Submit</button>
+          </form>
+        </li>
 
-
-
-
+      </ul>
+  </main> 
+  <footer>
   
-        <div>
-            <ul>
-            <% for(var i=0; i<drivers.length; i++) {%>
-  
-              <li>
-                <div><%= drivers[i].name %></div>
-                <a href="/driver/<%= drivers[i]._id%>">
-                  <img src="<%= drivers[i].image%>">
-                </a>
-              </li>
-  
-              <form
-                action="/driver/startTime/<%= drivers.id %>?_method=PUT"
-                method="POST"
-              >
-                <button>Start Driving</button>
-                <button>Stop Driving</button>
-              </form>
-            <% } %>
-            </ul>
-          <div>
-        
-          </div>  
-        </div> 
-        
-        
-
-      </div>
-
-
+  </footer>
 
 </body>
 </html>
