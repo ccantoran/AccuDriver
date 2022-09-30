@@ -25,26 +25,34 @@
   
       <ul class="driver-grid">
 
+        <% for(var i=0; i<drivers.length; i++) {%>
+          <li>
+            <div class="bold"><%= drivers[i].name %></div>
+            <a href="/driver/<%= drivers[i]._id%>">
+              <img class="driver-img" src="<%= drivers[i].image%>">
+            </a>
 
-      <% for(var i=0; i<drivers.length; i++) {%>
-        <li>
-          <div class="bold"><%= drivers[i].name %></div>
-          <a href="/driver/<%= drivers[i]._id%>">
-            <img class="driver-img" src="<%= drivers[i].image%>">
-          </a>
+            <% for(var j=0; j<start.length; j++) {%>
+              <% if (drivers[i]._id == start[j].id) {%>
+                <div><%= start[j].time %></div>
+              <%} %>
+            <% } %>
 
-          <form action="/driver/start/<%= drivers[i]._id%>" method="POST">
-            <button class="margin-3">start</button>
-          </form>
-          <form action="/driver/stop/<%= drivers[i]._id%>" method="POST">
-            <button class="margin-3">stop</button>
-          </form>
-         
-          
+            <% for(var q=0; q<stop.length; q++) {%>
+              <% if (drivers[i]._id == stop[q].id) {%>
+                <div><%= stop[q].time %></div>
+              <%} %>
+            <% } %>
 
+            <form action="/driver/start/<%= drivers[i]._id%>" method="POST">
+              <button class="margin-3">start</button>
+            </form>
+            <form action="/driver/stop/<%= drivers[i]._id%>" method="POST">
+              <button class="margin-3">stop</button>
+            </form>
 
-        </li>
-      <% } %>
+          </li>
+        <% } %>
 
 
         <li>

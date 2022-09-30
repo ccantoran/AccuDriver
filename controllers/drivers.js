@@ -8,14 +8,13 @@ module.exports = {
   getDashboard: async (req, res) => {
     try {
       const drivers = await Driver.find({ user: req.user.id });
-      res.render("dashboard.ejs", { drivers: drivers, user: req.user });
+      const start = await Start.find({user: req.user.id})
+      const stop = await Stop.find({user: req.user.id})
 
-
-
-      // const driveTime = await Start.find({})
-      // res.render("dashboard.ejs")
-
-
+  
+      res.render("dashboard.ejs", { 
+        drivers: drivers, user: req.user, start: start, stop:stop
+      });
 
     } catch (err) {
       console.log(err);
@@ -63,6 +62,7 @@ module.exports = {
   startTime: async (req, res) => {
     try {
       await Start.create({
+        user: req.user.id,
         time: Date.now(),
         id:req.params._id,
       });
@@ -75,6 +75,7 @@ module.exports = {
   stopTime: async (req, res) => {
     try {
       await Stop.create({
+        user: req.user.id,
         time: Date.now(),
         id:req.params._id,
       });
