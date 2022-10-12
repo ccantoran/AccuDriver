@@ -86,3 +86,16 @@ module.exports = {
     }
   },
 };
+
+
+
+
+
+//basically we have to take the hour and put it in a conditional
+//at the end just paste together. and add AM and PM
+
+// if(startHour > 12){
+//   return `${startHour - 12} : ${startMin} PM`
+// }else{
+//   return `${startHour} : ${startMin} AM`
+// }

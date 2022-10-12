@@ -22,6 +22,9 @@
     </div>
   </nav>
   <main class="dashboard-main">
+    
+        <% var newDate = new Date().toString().slice(0, 10)%>
+
   
       <ul class="driver-grid">
 
@@ -33,19 +36,55 @@
               <img class="driver-img" src="<%= drivers[i].image%>">
             </a>
 
-            <div class="times">
+            <div class="times">              
               <div class="starts">
+                <div><%= newDate %></div>
+
+                <!-- Scan thru all starts -->
                 <% for(var j=0; j<start.length; j++) {%>
-                  <% if (drivers[i]._id == start[j].id) {%>
-                    <div><%= start[j].time %></div>
+                  <% var startDate = start[j].time.toString().slice(0, 10) %>
+
+                <!-- Driver match to starts -->
+                  <% if (drivers[i]._id == start[j].id && startDate == newDate) {%>
+                    <% let startTime = start[j].time %>
+                    <% let startHour = start[j].time.toString().slice(16, 18) %>
+                    <% let startMin = start[j].time.toString().slice(19, 21) %>
+
+                <!-- Date changed to readable format -->
+                      <% if(startHour > 12) {%>
+                        <% var startStamp = `${startHour - 12}:${startMin} PM`%>
+                      <%}else {%>
+                        <% var startStamp =`${startHour - 12}:${startMin} PM` %>
+                      <%} %>
+
+                    <div><%= startStamp %></div>
+                  
                   <%} %>
                 <% } %>
               </div>
             
               <div class="stops">
+                <div><%= newDate %></div>
+                
+                <!-- Scan thru all the stops -->
                 <% for(var q=0; q<stop.length; q++) {%>
-                  <% if (drivers[i]._id == stop[q].id) {%>
-                    <div id="stops"><%= stop[q].time %></div>
+                  <% var stopDate = stop[q].time.toString().slice(0, 10) %>
+
+                <!-- Driver match to stops -->
+                  <% if (drivers[i]._id == stop[q].id && stopDate == newDate) {%>
+
+                    <% let stopTime = stop[q].time %>
+                    <% let stopHour = stop[q].time.toString().slice(16, 18) %>
+                    <% let stopMin = stop[q].time.toString().slice(19, 21) %>
+
+                <!-- Date changed to readable format -->
+                      <% if(stopHour > 12) {%>
+                        <% var stopStamp = `${stopHour - 12}:${stopMin} PM`%>
+                      <%}else {%>
+                        <% var stopStamp =`${stopHour - 12}:${stopMin} PM` %>
+                      <%} %>
+
+                    <div><%= stopStamp %></div>
                   <%} %>
                 <% } %>
               </div>
