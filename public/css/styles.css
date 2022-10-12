@@ -149,7 +149,7 @@ nav>img{
     padding-left:0;
     --gap:15px;
     --num-cols:2;
-    --row-height: 300px;
+    --row-height: grid-auto-rows;
     box-sizing: border-box;
     padding: var(--gap);
     display:grid;
@@ -173,9 +173,24 @@ nav>img{
     width: 130px;
     border-radius: 40%;
 }
+.driver-btns{
+    display: flex;
+}
+.driver-btns>form>button{
+    margin-left: 10px;
+    border-radius: 5px;
+}
 .bold{
     font-weight: 600;
     font-size: 18px;
+}
+.times{
+    display:flex;
+}
+.starts, .stops{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 

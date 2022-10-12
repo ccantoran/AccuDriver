@@ -25,6 +25,7 @@
   
       <ul class="driver-grid">
 
+        <!-- drivers in DB -->
         <% for(var i=0; i<drivers.length; i++) {%>
           <li>
             <div class="bold"><%= drivers[i].name %></div>
@@ -32,29 +33,39 @@
               <img class="driver-img" src="<%= drivers[i].image%>">
             </a>
 
-            <% for(var j=0; j<start.length; j++) {%>
-              <% if (drivers[i]._id == start[j].id) {%>
-                <div><%= start[j].time %></div>
-              <%} %>
-            <% } %>
+            <div class="times">
+              <div class="starts">
+                <% for(var j=0; j<start.length; j++) {%>
+                  <% if (drivers[i]._id == start[j].id) {%>
+                    <div><%= start[j].time %></div>
+                  <%} %>
+                <% } %>
+              </div>
+            
+              <div class="stops">
+                <% for(var q=0; q<stop.length; q++) {%>
+                  <% if (drivers[i]._id == stop[q].id) {%>
+                    <div id="stops"><%= stop[q].time %></div>
+                  <%} %>
+                <% } %>
+              </div>
+            
+            </div>
 
-            <% for(var q=0; q<stop.length; q++) {%>
-              <% if (drivers[i]._id == stop[q].id) {%>
-                <div><%= stop[q].time %></div>
-              <%} %>
-            <% } %>
-
-            <form action="/driver/start/<%= drivers[i]._id%>" method="POST">
-              <button class="margin-3">start</button>
-            </form>
-            <form action="/driver/stop/<%= drivers[i]._id%>" method="POST">
-              <button class="margin-3">stop</button>
-            </form>
+            <div class="driver-btns">
+              <form action="/driver/start/<%= drivers[i]._id%>" method="POST">
+                <button>start</button>
+              </form>
+              <form action="/driver/stop/<%= drivers[i]._id%>" method="POST">
+                <button>stop</button>
+              </form>
+            </div>
+            
 
           </li>
         <% } %>
 
-
+        <!-- create driver form -->
         <li>
           <div class="bold">Add a Driver</div>
           <img class="driver-img" src="img/blank.png">
