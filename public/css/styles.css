@@ -149,7 +149,7 @@ nav>img{
     padding-left:0;
     --gap:15px;
     --num-cols:2;
-    --row-height: grid-auto-rows;
+    --row-height: 400px;
     box-sizing: border-box;
     padding: var(--gap);
     display:grid;

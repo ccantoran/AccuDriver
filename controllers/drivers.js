@@ -88,14 +88,14 @@ module.exports = {
 };
 
 
+//alright... the meat and cheese?
+//drivers is i  and then we have two loops that both have conditionals 
+//we need to have another conditional.
 
+// if stop[y] = undefined{
+//   return variable = "missing stop point"
 
-
-//basically we have to take the hour and put it in a conditional
-//at the end just paste together. and add AM and PM
-
-// if(startHour > 12){
-//   return `${startHour - 12} : ${startMin} PM`
 // }else{
-//   return `${startHour} : ${startMin} AM`
+  // do subtraction 
 // }
+// I think we have to loop thorugh the stop and start stamps 
