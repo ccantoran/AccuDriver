@@ -135,7 +135,7 @@ nav>img{
 /*///////////MAIN//////*/
 .dashboard-main{
     display: flex;
-    height: 900px;
+    height: 1000px;
     justify-content: space-around;
     background-image: url(/img/background1.png);
     background-repeat: no-repeat;

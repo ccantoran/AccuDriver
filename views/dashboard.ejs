@@ -14,6 +14,7 @@
   <title>AccuDriver Dashboard</title>
 </head>
 <body>
+
   <nav>
     <img src="img/nav.png">
     <div class="nav-div">
@@ -21,39 +22,37 @@
       <a href="/logout">Logout</a>
     </div>
   </nav>
+
   <main class="dashboard-main">
-    
+
         <% var newDate = new Date().toString().slice(0, 10)%>
         
-  
       <ul class="driver-grid">
 
         <!-- Each Driver in DB -->
         <% for(var i=0; i<drivers.length; i++) {%>
+
           <li>
             <div class="bold"><%= drivers[i].name %></div>
             <a href="/driver/<%= drivers[i]._id%>">
               <img class="driver-img" src="<%= drivers[i].image%>">
             </a>
+            <div><%= newDate %></div>
 
             <!-- Empty Arrays -->
             <%var startArr = []%>
             <%var stopArr = []%>
-           
-
-
-
-
-            <!-- All Start and Stops -->
-            <div class="times">              
+              
+            <div class="times">      
+              <!-- All Starts-->        
               <div class="starts">
-                <div><%= newDate %></div>
+                <div>Start Stamps</div>
 
-                <!-- Scan thru all starts -->
+                <!-- Loop thru All Starts -->
                 <% for(var j=0; j<start.length; j++) {%>
                   <% var startDate = start[j].time.toString().slice(0, 10) %>
 
-                <!-- Driver match to starts CONDITIONAL-->
+                <!-- Driver Start Match CONDITIONAL-->
                   <% if (drivers[i]._id == start[j].id && startDate == newDate) {%>
                     <% var startTime = start[j].time %>
                     <% var startHour = start[j].time.toString().slice(16, 18) %>
@@ -62,14 +61,14 @@
                     <!-- Push into Arr -->
                     <% startArr.push(startTime) %>
                    
-
-
-                <!-- Date Format Change-->
-                      <% if(startHour > 12) {%>
+                    <!-- Date Format Change-->
+                    <% if(+startHour < 12) {%>
+                      <% var startStamp = `${startHour}:${startMin} AM`%>
+                    <%}else if(startHour == 12){%>
+                      <% var startStamp = `${startHour}:${startMin} PM`%>
+                    <%}else {%>
                         <% var startStamp = `${startHour - 12}:${startMin} PM`%>
-                      <%}else {%>
-                        <% var startStamp = `${startHour}:${startMin} AM`%>
-                      <%} %>
+                    <%} %>
 
                     <div><%= startStamp %></div>
                   
@@ -77,34 +76,34 @@
                 <% } %>
               </div>
       
-            
+              <!-- All Stops-->
               <div class="stops">
-                <div><%= newDate %></div>
+                <div>Stop Stamps</div>
                 
-                <!-- Scan thru all the stops -->
+                <!-- Loop thru ALL Stops -->
                 <% for(var q=0; q<stop.length; q++) {%>
                   <% var stopDate = stop[q].time.toString().slice(0, 10) %>
 
-                <!-- Driver match to stops CONDITIONAL-->
+                <!-- Driver Stop Match CONDITIONAL-->
                   <% if (drivers[i]._id == stop[q].id && stopDate == newDate) {%>
-
                     <% var stopTime = stop[q].time %>
                     <% var stopHour = stop[q].time.toString().slice(16, 18) %>
                     <% var stopMin = stop[q].time.toString().slice(19, 21) %>
 
                     <!-- Push into Arr -->
-                    <% stopArr.push(stop[q].time ) %>
-                    
+                    <% stopArr.push(stop[q].time ) %>                   
 
-
-                <!-- Date Format Change -->
-                      <% if(stopHour > 12) {%>
+                    <!-- Date Format Change -->
+                    <% if(+stopHour < 12) {%>
+                      <% var stopStamp = `${stopHour}:${stopMin} AM`%>
+                    <%}else if(stopHour == 12){%>
+                      <% var stopStamp = `${stopHour}:${stopMin} PM`%>
+                    <%}else {%>
                         <% var stopStamp = `${stopHour - 12}:${stopMin} PM`%>
-                      <%}else {%>
-                        <% var stopStamp = `${stopHour}:${stopMin} AM`%>
-                      <%} %>
+                    <%} %>
 
                     <div><%= stopStamp %></div>
+
                   <%} %>
                 <% } %>
               </div>
@@ -120,27 +119,24 @@
               </form>
             </div>
 
-            <!-- Subtraction -- Start and Stop Array are Equal CONDITIONAL-->
+            <!-- Drive Time Left -->
+            <!-- Start & Stop Array Length Equal CONDITIONAL-->
             <% var response = 0 %>
             <% if(stopArr.length == startArr.length){ %>
               <% let elapsedMili = 0 %>
               <% for(let n=0; n<stopArr.length; n++){ %>
-
                 <!-- Converstion from Milisecs to Hr : Min Elapsed time -->
                 <% elapsedMili += (stopArr[n] - startArr[n]) %>
-                
                 <% let elapsedMin = Math.floor(elapsedMili/(1000 * 60)) % 60 %>
                 <% let elapsedHr = Math.floor(elapsedMili/(1000 * 60 * 60)) %>
-
                 <% response = `${elapsedHr}hrs ${elapsedMin}mins / 11hrs `%>
-
               <%}%>
             <%}else{%>
                 <% response = "Driver is still driving" %>
             <%} %>
 
+            <div>Total Drive Time Today:</div>  
             <div><%= response %></div>
-            <% console.log(response) %>
 
           </li>
         <% } %>
