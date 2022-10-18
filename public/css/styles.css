@@ -32,7 +32,7 @@ body{
     background-image: url(/img/truck3.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 750px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,6 +73,17 @@ body{
     border:var(--main-color);
 }
 
+
+@media screen and (max-width: 500px){
+    .login-block>img{
+        width: 150px;
+    }
+}
+@media screen and (max-width: 350px){
+    .login-block>img{
+        width: 100px;
+    }
+}
 /*////////////////////////////////////////////////////////////////////////
                                 /login
 ///////////////////////////////////////////////////////////////////////*/
