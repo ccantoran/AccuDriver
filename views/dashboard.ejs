@@ -37,7 +37,7 @@
             <a href="/driver/<%= drivers[i]._id%>">
               <img class="driver-img" src="<%= drivers[i].image%>">
             </a>
-            <div><%= newDate %></div>
+            <div class="profile-headings"><%= newDate %></div>
 
             <!-- Empty Arrays -->
             <%var startArr = []%>
@@ -112,10 +112,10 @@
 
             <div class="driver-btns">
               <form action="/driver/start/<%= drivers[i]._id%>" method="POST">
-                <button>start</button>
+                <button id="start-btn">start</button>
               </form>
               <form action="/driver/stop/<%= drivers[i]._id%>" method="POST">
-                <button>stop</button>
+                <button id="stop-btn">stop</button>
               </form>
             </div>
 
@@ -132,10 +132,10 @@
                 <% response = `${elapsedHr}hrs ${elapsedMin}mins / 11hrs `%>
               <%}%>
             <%}else{%>
-                <% response = "Driver is still driving" %>
+                <% response = "**Driver is still driving**" %>
             <%} %>
 
-            <div>Total Drive Time Today:</div>  
+            <div class="profile-headings">Total Drive Time Today:</div>  
             <div><%= response %></div>
 
           </li>
