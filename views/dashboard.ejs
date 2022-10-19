@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/59c032d6c4.js" crossorigin="anonymous"></script>
   <!-- favicon -->
   <link rel="shortcut icon" type="image/jpg" href="img/favi.png?v=1"/>
   <title>AccuDriver Dashboard</title>
@@ -25,7 +26,18 @@
 
   <main class="dashboard-main">
 
+        <!-- Today's Date -->
         <% var newDate = new Date().toString().slice(0, 10)%>
+
+        <!-- This Week -->
+        <% var weekDate = new Date()%>
+        <% weekDate.setDate(weekDate.getDate() - 7) %>
+        <%console.log(weekDate.getDate) %>
+        
+
+
+
+
         
       <ul class="driver-grid">
 
@@ -33,10 +45,12 @@
         <% for(var i=0; i<drivers.length; i++) {%>
 
           <li>
-            <div class="bold"><%= drivers[i].name %></div>
-            <a href="/driver/<%= drivers[i]._id%>">
-              <img class="driver-img" src="<%= drivers[i].image%>">
-            </a>
+            <div class="profile-header">
+              <div></div>
+              <div class="bold"><%= drivers[i].name %></div>
+              <a href="/driver/<%= drivers[i]._id%>"><i class="fa-solid fa-x"></i></a>
+            </div>
+            <img class="driver-img" src="<%= drivers[i].image%>">
             <div class="profile-headings"><%= newDate %></div>
 
             <!-- Empty Arrays -->
@@ -51,6 +65,21 @@
                 <!-- Loop thru All Starts -->
                 <% for(var j=0; j<start.length; j++) {%>
                   <% var startDate = start[j].time.toString().slice(0, 10) %>
+                  <!-- create variable that makes subtraction -->
+                  
+
+
+
+<!-- filter out the "week" -->
+<% if (drivers[i]._id == start[j].id && startDate == newDate) {%>
+
+
+
+<%}%>
+
+
+
+
 
                 <!-- Driver Start Match CONDITIONAL-->
                   <% if (drivers[i]._id == start[j].id && startDate == newDate) {%>
@@ -137,6 +166,13 @@
 
             <div class="profile-headings">Total Drive Time Today:</div>  
             <div><%= response %></div>
+
+
+
+
+
+
+
 
           </li>
         <% } %>

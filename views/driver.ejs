@@ -31,14 +31,17 @@
           action="/driver/deleteDriver/<%= driver.id %>?_method=DELETE"
           method="POST"
         >
-          <button>delete driver?</button>
+
+        <div>Are you sure you want to delete driver?</div>
+          <div class="dlt-op">
+            <button class="dlt-btn">Yes</button>
+            <a href="/dashboard">No</a>
+          </div>
         </form>
       <%}%>
     </div>
 
-    <div class="return-dash">
-      <a href="/dashboard">Return to Dashboard</a>
-    </div>
+    
   </main>
   
 
