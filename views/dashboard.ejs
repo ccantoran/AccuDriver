@@ -30,9 +30,12 @@
         <% var newDate = new Date().toString().slice(0, 10)%>
 
         <!-- This Week -->
-        <% var weekDate = new Date()%>
-        <% weekDate.setDate(weekDate.getDate() - 7) %>
-        <%console.log(weekDate.getDate) %>
+        <% var todaysDate = new Date()%>
+        <% var weekStartPoint = new Date(todaysDate.setDate(todaysDate.getDate() - 7)) %>
+     
+
+
+
         
 
 
@@ -57,6 +60,15 @@
             <%var startArr = []%>
             <%var stopArr = []%>
               
+<% var subStarts = {}%>
+
+
+
+
+
+
+
+
             <div class="times">      
               <!-- All Starts-->        
               <div class="starts">
@@ -65,17 +77,36 @@
                 <!-- Loop thru All Starts -->
                 <% for(var j=0; j<start.length; j++) {%>
                   <% var startDate = start[j].time.toString().slice(0, 10) %>
-                  <!-- create variable that makes subtraction -->
+                  
+                  
+                  <% var startsWeek = start[j].time%>
                   
 
-
+<%var a = [] %>
 
 <!-- filter out the "week" -->
-<% if (drivers[i]._id == start[j].id && startDate == newDate) {%>
+<% if (drivers[i]._id == start[j].id && startsWeek >= weekStartPoint) {%>
+
+
+
+<%a.push(start[j].time)%>
+
+
+
+<!-- string.split('').forEach(function(s) {
+  count[s] ? count[s]++ : count[s] = 1;
+}); -->
+<!-- filter multiple time stamps within the day  -->
+
+<% var b = start[j].time.getDate() %>
+<%a.forEach((c) =>  {%>
+  <%!subStarts[b] ? subStarts[b] = start[j].time : '' %>
+<%})%>
 
 
 
 <%}%>
+<%console.log(a)%>
 
 
 
@@ -169,8 +200,7 @@
 
 
 
-
-
+ <% console.log(subStarts) %>
 
 
 
