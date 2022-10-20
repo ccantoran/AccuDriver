@@ -56,18 +56,13 @@
 <!-- Multi Start & Stop Stamps/7days -->
 <!-- Ex: [2022-10-17T23:08:21.079Z, 2022-10-17T23:27:23.601Z] -->
 
-            <%var startsDuringWeek = [] %>
-            <%var stopsDuringWeek = [] %>
+<%var startsDuringWeek = [] %>
+<%var stopsDuringWeek = [] %>
 
 <!-- Empty Objs for Starts/Stops  -->
 <!-- Ex: { '17': 2022-10-17T23:27:23.601Z, '18': 2022-10-18T20:53:53.743Z } -->
 <% var startsObj= {}%>
 <% var stopsObj = {}%>
-
-
-
-
-
 
             <div class="times">      
               <!-- All Starts-->        
@@ -78,24 +73,19 @@
                 <% for(var j=0; j<start.length; j++) {%>
                   <% var startDate = start[j].time.toString().slice(0, 10) %>                  
                   
-
-<% var startsWeek = start[j].time%>
-                  
+<% var startsWeek = start[j].time%> 
 <!-- Filter Drivers that Match Start / 7 days -->
 <% if (drivers[i]._id == start[j].id && startsWeek >= weekStartPoint) {%>
   
   <%startsDuringWeek.push(startsWeek)%>
 
-    
 <%}%>
-
 
                 <!-- Driver Start Match CONDITIONAL-->
                   <% if (drivers[i]._id == start[j].id && startDate == newDate) {%>
                     <% var startTime = start[j].time %>
-                    <% var startHour = start[j].time.toString().slice(16, 18) %>
+                    <% var startHour = start[j].time.getHours() %>
                     <% var startMin = start[j].time.toString().slice(19, 21) %>
-
                     <!-- Push into Arr -->
                     <% startArr.push(startTime) %>
                    
@@ -113,8 +103,6 @@
                   <%} %>
                 <% } %>
 
-
-
 <!-- Slicing from "Monday" -->
 <%var indexOfMon = startsDuringWeek.indexOf(startsDuringWeek.find((a) => a.toString().includes('Mon')))%>
 <%var startsFromMonday = startsDuringWeek.slice(indexOfMon, startsDuringWeek.length) %>
@@ -126,10 +114,7 @@
 <%uniqStartDays.forEach((c) =>  {%>
   <%!startsObj[c] ? startsObj[c] = startsFromMonday.find((a) => a.getDate() == c) : '' %>
   <%})%>
-                
-                
-  
-
+   
               </div>
       
               <!-- All Stops-->
@@ -140,8 +125,6 @@
                 <% for(var q=0; q<stop.length; q++) {%>
                   <% var stopDate = stop[q].time.toString().slice(0, 10) %>
 
-
-
   <% var stopsWeek = stop[q].time%>
                   
 <!-- Filter Drivers that Match Stop / 7 days -->
@@ -151,11 +134,10 @@
     
 <%}%>
 
-
                 <!-- Driver Stop Match CONDITIONAL-->
                   <% if (drivers[i]._id == stop[q].id && stopDate == newDate) {%>
                     <% var stopTime = stop[q].time %>
-                    <% var stopHour = stop[q].time.toString().slice(16, 18) %>
+                    <% var stopHour = stop[q].time.getHours() %>
                     <% var stopMin = stop[q].time.toString().slice(19, 21) %>
 
                     <!-- Push into Arr -->
@@ -175,11 +157,9 @@
                   <%} %>
                 <% } %>
 
-
 <!-- Slicing from "Monday" -->
 <!-- indexOfMon is defined up there^ -->
 <%var stopsFromMonday = stopsDuringWeek.slice(indexOfMon, stopsDuringWeek.length) %>
-
 
 <!-- Push Stop Obj -->
 
@@ -189,8 +169,6 @@
   <%!stopsObj[c] ? stopsObj[c] = stopsFromMonday.reverse().find((a) => a.getDate() == c) : '' %>
   <%})%>
                 
-
-
               </div>
 
             </div>
@@ -222,10 +200,7 @@
 
             <div class="profile-headings">Total Drive Time Today:</div>  
             <div><%= response %></div>
-
-            
-            
-      
+   
 
 <%var endPt = new Date().getDate()%>
 <%var strtPt = startsFromMonday[indexOfMon].getDate()%>
@@ -240,64 +215,16 @@
 <%}%>
 
 
-
 <!-- time Converstion -->
 <% let totalWeekMin = Math.floor(totalWeek/(1000 * 60)) % 60 %>
 <% let totalWeekHr = Math.floor(totalWeek/(1000 * 60 * 60)) %>
-
- 
-
 
 <div class="profile-headings">Total Hours This Week:</div>
 <div><%= `${totalWeekHr} hr : ${totalWeekMin} min / 40 hrs`%></div>
 
 
-
- 
-
-
-
           </li>
         <% } %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <!-- create driver form -->
         <li>
