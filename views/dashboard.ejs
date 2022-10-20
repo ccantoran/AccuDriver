@@ -32,7 +32,7 @@
         <!-- This Week -->
         <% var todaysDate = new Date()%>
         <% var weekStartPoint = new Date(todaysDate.setDate(todaysDate.getDate() - 7)) %>
-     
+   
         
       <ul class="driver-grid">
 
@@ -77,6 +77,9 @@
 <!-- filter out the "week" -->
 <% if (drivers[i]._id == start[j].id && startsWeek >= weekStartPoint) {%>
 
+
+
+    
     <%startsDuringWeek.push(startsWeek)%>
 
 <!-- filter multiple time stamps within the day  -->
@@ -85,6 +88,18 @@
 <%startsDuringWeek.forEach((c) =>  {%>
   <%!startsObj[uniqStrtDate] ? startsObj[uniqStrtDate] = start[j].time : '' %>
 <%})%>
+
+
+<!-- Slicing from "Monday" -->
+
+<%for(p=0; p<startsDuringWeek.length; p++){%>
+  <%if(startsDuringWeek[p].toString().includes('Mon')){%>
+    <%let mondayIndex = startsDuringWeek[p].toString().includes('Mon')%>
+    <%console.log(startsDuringWeek.slice(-(mondayIndex)))%>
+  <%}%>
+
+<%}%>
+
 
 <%}%>
 
@@ -215,7 +230,7 @@
 <!-- time Converstion -->
 <% let totalWeekMin = Math.floor(totalWeek/(1000 * 60)) % 60 %>
 <% let totalWeekHr = Math.floor(totalWeek/(1000 * 60 * 60)) %>
-<%  console.log(`${totalWeekHr} hr : ${totalWeekMin} min`)%>
+
  
 
 
