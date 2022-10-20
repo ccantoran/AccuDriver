@@ -195,16 +195,35 @@
             <div class="profile-headings">Total Drive Time Today:</div>  
             <div><%= response %></div>
 
+            
+            
+      
 
+<%var endPt = new Date().getDate()%>
+<%var strtPt = endPt - 7%>
 
- <% console.log(startsObj) %>
+<%var totalWeek = 0%>
 
+<!-- subtract the start obj and stop obj to get a total Time -->
+<%for(let h=strtPt; h <= endPt; h++){%>
+  <%stopsObj[h]%>
+  <%if(!isNaN(stopsObj[h]-startsObj[h])){%>
+    <%totalWeek += stopsObj[h]-startsObj[h]%>
+  <%}%>
+<%}%>
 
-
-
-
-
+<!-- time Converstion -->
+<% let totalWeekMin = Math.floor(totalWeek/(1000 * 60)) % 60 %>
+<% let totalWeekHr = Math.floor(totalWeek/(1000 * 60 * 60)) %>
+<%  console.log(`${totalWeekHr} hr : ${totalWeekMin} min`)%>
  
+
+
+<div class="profile-headings">Total Hours This Week:</div>
+<div><%= `${totalWeekHr} hr : ${totalWeekMin} min / 40 hrs`%></div>
+
+
+
  
 
 
