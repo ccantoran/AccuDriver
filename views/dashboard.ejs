@@ -117,13 +117,13 @@
 
 <!-- Slicing from "Monday" -->
 <%var indexOfMon = startsDuringWeek.indexOf(startsDuringWeek.find((a) => a.toString().includes('Mon')))%>
-<%var startsFromMonday = startsDuringWeek.slice(1, startsDuringWeek.length) %>
+<%var startsFromMonday = startsDuringWeek.slice(indexOfMon, startsDuringWeek.length) %>
 
 
 <!-- Push Start Obj -->
-<%var uniqDays = startsFromMonday.map((e)=> e.getDate())%>
+<%var uniqStartDays = startsFromMonday.map((e)=> e.getDate())%>
 
-<%uniqDays.forEach((c) =>  {%>
+<%uniqStartDays.forEach((c) =>  {%>
   <%!startsObj[c] ? startsObj[c] = startsFromMonday.find((a) => a.getDate() == c) : '' %>
   <%})%>
                 
@@ -177,16 +177,16 @@
 
 
 <!-- Slicing from "Monday" -->
-<%var indexOfMon = stopsDuringWeek.indexOf(stopsDuringWeek.find((a) => a.toString().includes('Mon')))%>
-<%var stopsFromMonday = stopsDuringWeek.slice(1, stopsDuringWeek.length) %>
+<!-- indexOfMon is defined up there^ -->
+<%var stopsFromMonday = stopsDuringWeek.slice(indexOfMon, stopsDuringWeek.length) %>
 
 
 <!-- Push Stop Obj -->
 
-<%var uniqDays = stopsFromMonday.map((e)=> e.getDate())%>
+<%var uniqStopDays = stopsFromMonday.map((e)=> e.getDate())%>
 
-<%uniqDays.forEach((c) =>  {%>
-  <%!stopsObj[c] ? stopsObj[c] = stopsFromMonday.find((a) => a.getDate() == c) : '' %>
+<%uniqStopDays.forEach((c) =>  {%>
+  <%!stopsObj[c] ? stopsObj[c] = stopsFromMonday.reverse().find((a) => a.getDate() == c) : '' %>
   <%})%>
                 
 
@@ -236,7 +236,6 @@
 <%for(let h=strtPt; h <= endPt; h++){%>
  
   <%!isNaN(stopsObj[h]-startsObj[h]) ? totalWeek += stopsObj[h]-startsObj[h] : ''%>
-
   
 <%}%>
 
