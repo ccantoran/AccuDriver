@@ -33,14 +33,6 @@
         <% var todaysDate = new Date()%>
         <% var weekStartPoint = new Date(todaysDate.setDate(todaysDate.getDate() - 7)) %>
      
-
-
-
-        
-
-
-
-
         
       <ul class="driver-grid">
 
@@ -60,11 +52,10 @@
             <%var startArr = []%>
             <%var stopArr = []%>
               
-<% var subStarts = {}%>
 
-
-
-
+<!-- Empty Objs for Starts/Stops  -->
+<% var startsObj= {}%>
+<% var stopsObj = {}%>
 
 
 
@@ -76,40 +67,26 @@
 
                 <!-- Loop thru All Starts -->
                 <% for(var j=0; j<start.length; j++) {%>
-                  <% var startDate = start[j].time.toString().slice(0, 10) %>
-                  
-                  
-                  <% var startsWeek = start[j].time%>
+                  <% var startDate = start[j].time.toString().slice(0, 10) %>                  
                   
 
-<%var a = [] %>
+<% var startsWeek = start[j].time%>
+                  
+<%var startsDuringWeek = [] %>
 
 <!-- filter out the "week" -->
 <% if (drivers[i]._id == start[j].id && startsWeek >= weekStartPoint) {%>
 
+    <%startsDuringWeek.push(startsWeek)%>
 
-
-<%a.push(start[j].time)%>
-
-
-
-<!-- string.split('').forEach(function(s) {
-  count[s] ? count[s]++ : count[s] = 1;
-}); -->
 <!-- filter multiple time stamps within the day  -->
 
-<% var b = start[j].time.getDate() %>
-<%a.forEach((c) =>  {%>
-  <%!subStarts[b] ? subStarts[b] = start[j].time : '' %>
+<% var uniqStrtDate = start[j].time.getDate() %>
+<%startsDuringWeek.forEach((c) =>  {%>
+  <%!startsObj[uniqStrtDate] ? startsObj[uniqStrtDate] = start[j].time : '' %>
 <%})%>
 
-
-
 <%}%>
-<%console.log(a)%>
-
-
-
 
 
                 <!-- Driver Start Match CONDITIONAL-->
@@ -143,6 +120,26 @@
                 <!-- Loop thru ALL Stops -->
                 <% for(var q=0; q<stop.length; q++) {%>
                   <% var stopDate = stop[q].time.toString().slice(0, 10) %>
+
+
+<% var stopsWeek = stop[q].time%>
+
+<%var stopsDuringWeek  = []%>
+
+<!-- filter out the "week" -->
+<% if (drivers[i]._id == stop[q].id && stopsWeek >= weekStartPoint) {%>
+
+    <%stopsDuringWeek.push(stopsWeek)%>
+  
+  <!-- filter multiple time stamps within the day  -->
+  
+<% var uniqStopDate = stop[q].time.getDate() %>
+<%stopsDuringWeek.reverse().forEach((w) =>  {%>
+  <%!stopsObj[uniqStopDate] ? stopsObj[uniqStopDate] = stop[q].time : '' %>
+<%})%>
+  
+<%}%>
+  
 
                 <!-- Driver Stop Match CONDITIONAL-->
                   <% if (drivers[i]._id == stop[q].id && stopDate == newDate) {%>
@@ -200,7 +197,15 @@
 
 
 
- <% console.log(subStarts) %>
+ <% console.log(startsObj) %>
+
+
+
+
+
+
+ 
+ 
 
 
 
