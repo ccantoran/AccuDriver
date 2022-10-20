@@ -16,11 +16,12 @@
 </head>
 <body>
 
-  <nav>
+  <nav id="nav">
     <img src="img/nav.png">
     <div class="nav-div">
       <p>Welcome <strong><%= user.userName %></strong>!</p>
       <a href="/logout">Logout</a>
+      <a href="#help">Help</a>
     </div>
   </nav>
 
@@ -160,6 +161,7 @@
 <!-- Slicing from "Monday" -->
 <!-- indexOfMon is defined up there^ -->
 <%var stopsFromMonday = stopsDuringWeek.slice(indexOfMon, stopsDuringWeek.length) %>
+<%var indexOfMon = stopsDuringWeek.indexOf(stopsDuringWeek.find((a) => a.toString().includes('Mon')))%>
 
 <!-- Push Stop Obj -->
 
@@ -201,26 +203,30 @@
             <div class="profile-headings">Total Drive Time Today:</div>  
             <div><%= response %></div>
    
-
+<div class="profile-headings">Total Hours This Week:</div>
 <%var endPt = new Date().getDate()%>
-<%var strtPt = startsFromMonday[indexOfMon].getDate()%>
 
+<%if (!isNaN(indexOfMon)){%>
+
+<%var strtPt = endPt - 7%>
 <%var totalWeek = 0%>
 
 <!-- Subtract startObj & stopObj = Total Time -->
-<%for(let h=strtPt; h <= endPt; h++){%>
- 
-  <%!isNaN(stopsObj[h]-startsObj[h]) ? totalWeek += stopsObj[h]-startsObj[h] : ''%>
-  
-<%}%>
-
+    <%for(let h=strtPt; h <= endPt; h++){%>
+    
+      <%!isNaN(stopsObj[h]-startsObj[h]) ? totalWeek += stopsObj[h]-startsObj[h] : ''%>
+      
+    <%}%>
 
 <!-- time Converstion -->
 <% let totalWeekMin = Math.floor(totalWeek/(1000 * 60)) % 60 %>
 <% let totalWeekHr = Math.floor(totalWeek/(1000 * 60 * 60)) %>
 
-<div class="profile-headings">Total Hours This Week:</div>
-<div><%= `${totalWeekHr} hr : ${totalWeekMin} min / 40 hrs`%></div>
+<div><%= `${totalWeekHr} hrs ${totalWeekMin} min / 40 hrs`%></div>
+
+<%}else{%>
+<div><%= `0hrs 0mins / 40hrs` %></div>
+<%}%>
 
 
           </li>
@@ -245,9 +251,19 @@
 
       </ul>
   </main> 
+  <section id="help">
+<h2>How does it work?</h2>
+<span>Step 1: Add a Driver w/ a photo and name </span>
+<span>Step 2: push start when driver signals they have started to drive</span>
+<span>Step 3: push stop when driver signals they have stopped driving</span>
+<p>To ensure accuracy in Total Weekly Hours, be as accurate a possible and ensure "stop" has been pushed last everyday.</p>
+
+  </section>
+
   
   <footer>
-  
+  <a href="#nav"><i class="fa-solid fa-arrow-up"></i></a>
+  <a href="#nav">return to top</a>
   </footer>
 
 </body>

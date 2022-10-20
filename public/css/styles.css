@@ -139,13 +139,14 @@ nav>img{
 .nav-div{
     margin-right: 30px;
     text-align: right;
+    display: flex;
+    flex-direction: column;
 }
 .nav-div>p{
     font-size: 18px;
     margin:0;
 } 
 .nav-div>a{
-    padding-bottom: 10px;
     height: fit-content;
 }
 .nav-div>a:hover{
@@ -265,14 +266,33 @@ nav>img{
         --num-cols:4;
     }
 }
-
-
+/*///////////SECTION//////*/
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:var(--button-color);
+    padding: 5%;
+    text-align: center;
+    border:var(--button-color) solid 10px;
+}
 
 /*///////////FOOTER//////*/
 footer{
     height:100px;
+    background-color: var(--button-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
+footer>a:hover{
+    color:var(--aux-color)
+}
+footer>a:visited{
+    color:black;
+}
 
 
 
