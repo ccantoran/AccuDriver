@@ -48,20 +48,24 @@
             <img class="driver-img" src="<%= drivers[i].image%>">
             <div class="profile-headings"><%= newDate %></div>
 
-            <!-- Empty Arrays -->
+            <!-- All Starts & Stops Stamps / Day -->
             <%var startArr = []%>
             <%var stopArr = []%>
               
 
+<!-- Multi Start & Stop Stamps/7days -->
+<!-- Ex: [2022-10-17T23:08:21.079Z, 2022-10-17T23:27:23.601Z] -->
+
+            <%var startsDuringWeek = [] %>
+            <%var stopsDuringWeek = [] %>
+
 <!-- Empty Objs for Starts/Stops  -->
+<!-- Ex: { '17': 2022-10-17T23:27:23.601Z, '18': 2022-10-18T20:53:53.743Z } -->
 <% var startsObj= {}%>
 <% var stopsObj = {}%>
 
 
 
-
-
-<%var startsDuringWeek = [] %>
 
 
 
@@ -77,7 +81,7 @@
 
 <% var startsWeek = start[j].time%>
                   
-<!-- filter out Drivers that Match Start and are Within 7 days -->
+<!-- Filter Drivers that Match Start / 7 days -->
 <% if (drivers[i]._id == start[j].id && startsWeek >= weekStartPoint) {%>
   
   <%startsDuringWeek.push(startsWeek)%>
@@ -112,18 +116,19 @@
 
 
 <!-- Slicing from "Monday" -->
-
 <%var indexOfMon = startsDuringWeek.indexOf(startsDuringWeek.find((a) => a.toString().includes('Mon')))%>
-
-<%var fromMonday = startsDuringWeek.slice(1, startsDuringWeek.length) %>
-
-<%console.log(fromMonday)%>
+<%var startsFromMonday = startsDuringWeek.slice(1, startsDuringWeek.length) %>
 
 
+<!-- Push Start Obj -->
+<%var uniqDays = startsFromMonday.map((e)=> e.getDate())%>
+
+<%uniqDays.forEach((c) =>  {%>
+  <%!startsObj[c] ? startsObj[c] = startsFromMonday.find((a) => a.getDate() == c) : '' %>
+  <%})%>
                 
                 
-
-
+  
 
               </div>
       
@@ -136,24 +141,16 @@
                   <% var stopDate = stop[q].time.toString().slice(0, 10) %>
 
 
-<% var stopsWeek = stop[q].time%>
 
-<%var stopsDuringWeek  = []%>
-
-<!-- filter out the "week" -->
+  <% var stopsWeek = stop[q].time%>
+                  
+<!-- Filter Drivers that Match Stop / 7 days -->
 <% if (drivers[i]._id == stop[q].id && stopsWeek >= weekStartPoint) {%>
-
-    <%stopsDuringWeek.push(stopsWeek)%>
   
-  <!-- filter multiple time stamps within the day  -->
-  
-<% var uniqStopDate = stop[q].time.getDate() %>
-<%stopsDuringWeek.reverse().forEach((w) =>  {%>
-  <%!stopsObj[uniqStopDate] ? stopsObj[uniqStopDate] = stop[q].time : '' %>
-<%})%>
-  
+  <%stopsDuringWeek.push(stopsWeek)%>
+    
 <%}%>
-  
+
 
                 <!-- Driver Stop Match CONDITIONAL-->
                   <% if (drivers[i]._id == stop[q].id && stopDate == newDate) {%>
@@ -177,6 +174,23 @@
 
                   <%} %>
                 <% } %>
+
+
+<!-- Slicing from "Monday" -->
+<%var indexOfMon = stopsDuringWeek.indexOf(stopsDuringWeek.find((a) => a.toString().includes('Mon')))%>
+<%var stopsFromMonday = stopsDuringWeek.slice(1, stopsDuringWeek.length) %>
+
+
+<!-- Push Stop Obj -->
+
+<%var uniqDays = stopsFromMonday.map((e)=> e.getDate())%>
+
+<%uniqDays.forEach((c) =>  {%>
+  <%!stopsObj[c] ? stopsObj[c] = stopsFromMonday.find((a) => a.getDate() == c) : '' %>
+  <%})%>
+                
+
+
               </div>
 
             </div>
@@ -214,17 +228,19 @@
       
 
 <%var endPt = new Date().getDate()%>
-<%var strtPt = endPt - 7%>
+<%var strtPt = startsFromMonday[indexOfMon].getDate()%>
 
 <%var totalWeek = 0%>
 
-<!-- subtract the start obj and stop obj to get a total Time -->
+<!-- Subtract startObj & stopObj = Total Time -->
 <%for(let h=strtPt; h <= endPt; h++){%>
-  <%stopsObj[h]%>
-  <%if(!isNaN(stopsObj[h]-startsObj[h])){%>
-    <%totalWeek += stopsObj[h]-startsObj[h]%>
-  <%}%>
+ 
+  <%!isNaN(stopsObj[h]-startsObj[h]) ? totalWeek += stopsObj[h]-startsObj[h] : ''%>
+
+  
 <%}%>
+
+
 
 <!-- time Converstion -->
 <% let totalWeekMin = Math.floor(totalWeek/(1000 * 60)) % 60 %>
@@ -244,6 +260,45 @@
 
           </li>
         <% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <!-- create driver form -->
         <li>
