@@ -58,6 +58,6 @@ app.use("/", mainRoutes);
 app.use("/driver", driverRoutes);
 
 //Server Running
-app.listen(process.env.PORT || PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server is running");
 });

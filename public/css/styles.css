@@ -275,7 +275,9 @@ section{
     background-color:var(--button-color);
     padding: 5%;
     text-align: center;
-    border:var(--button-color) solid 10px;
+    border-top:white dashed 10px;
+    border-bottom:white dashed 10px;
+
 }
 
 /*///////////FOOTER//////*/
