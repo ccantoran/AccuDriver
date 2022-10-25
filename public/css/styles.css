@@ -247,6 +247,8 @@ nav>img{
 }
 
 
+
+
 @media screen and (max-width:550px){
     .driver-grid{
         --num-cols:1;
