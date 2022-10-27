@@ -57,6 +57,7 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/driver", driverRoutes);
 
+
 //Server Running
 app.listen(process.env.PORT || PORT, () => {
   console.log("Server is running");
