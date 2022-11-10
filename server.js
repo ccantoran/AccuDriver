@@ -1,3 +1,4 @@
+const { MongoClient } = require('mongodb');
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -11,8 +12,7 @@ const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const driverRoutes = require("./routes/driver");
 const PORT = process.env.PORT || 2121
-const { MongoClient } = require('mongodb');
-const uri = process.env.MONGO_CONNECTION_STRING;
+const uri = process.env.DB_STRING;
 const client = new MongoClient(uri);
 
 //Use .env file in config folder
@@ -61,7 +61,6 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/driver", driverRoutes);
 
-
 client.connect(err => {
   if(err){ console.error(err); return false;}
   // connection to mongo is successful, listen for requests
@@ -70,7 +69,11 @@ client.connect(err => {
   })
 });
 
+
+
+
+//Deleted Code
 //Server Running
-// app.listen(PORT, () => {
+// app.listen( PORT, () => {
 //   console.log("Server is running");
 // });
