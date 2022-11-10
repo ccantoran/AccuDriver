@@ -1,7 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Driver = require("../models/Driver");
-const Start = require("../models/Start")
-const Stop = require("../models/Stop")
+const Start = require("../models/Start");
+const Stop = require("../models/Stop");
 
 
 module.exports = {
