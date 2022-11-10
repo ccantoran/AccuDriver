@@ -10,6 +10,10 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const driverRoutes = require("./routes/driver");
+const PORT = process.env.PORT || 2121
+const { MongoClient } = require('mongodb');
+const uri = process.env.MONGO_CONNECTION_STRING;
+const client = new MongoClient(uri);
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -46,9 +50,6 @@ app.use(
   })
 );
 
-
-
-
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -61,7 +62,15 @@ app.use("/", mainRoutes);
 app.use("/driver", driverRoutes);
 
 
-//Server Running
-app.listen(process.env.PORT || PORT, () => {
-  console.log("Server is running");
+client.connect(err => {
+  if(err){ console.error(err); return false;}
+  // connection to mongo is successful, listen for requests
+  app.listen(PORT, () => {
+      console.log("listening for requests");
+  })
 });
+
+//Server Running
+// app.listen(PORT, () => {
+//   console.log("Server is running");
+// });
