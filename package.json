@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ccantoran/TimeKeep.git"
+    "url": "git+https://github.com/ccantoran/AccuDriver.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ccantoran/TimeKeep/issues"
+    "url": "https://github.com/ccantoran/AccuDriver/issues"
   },
-  "homepage": "https://github.com/ccantoran/TimeKeep#readme",
+  "homepage": "https://github.com/ccantoran/AccuDriver#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.32.0",
