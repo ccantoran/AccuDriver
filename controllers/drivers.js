@@ -11,8 +11,8 @@ module.exports = {
       const start = await Start.find({user: req.user.id})
       const stop = await Stop.find({user: req.user.id})
 
-  
-      res.render("dashboard.ejs", { 
+
+      res.render("dashboard.ejs", {
         drivers: drivers, user: req.user, start: start, stop:stop
       });
 
@@ -89,13 +89,13 @@ module.exports = {
 
 
 //alright... the meat and cheese?
-//drivers is i  and then we have two loops that both have conditionals 
+//drivers is i  and then we have two loops that both have conditionals
 //we need to have another conditional.
 
 // if stop[y] = undefined{
 //   return variable = "missing stop point"
 
 // }else{
-  // do subtraction 
+  // do subtraction
 // }
-// I think we have to loop thorugh the stop and start stamps 
+// I think we have to loop thorugh the stop and start stamps
