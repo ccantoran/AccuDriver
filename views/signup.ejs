@@ -14,22 +14,22 @@
   <title>AccuDriver Sign-Up</title>
 </head>
 <body>
-  
+
 
     <main class="login-background">
-      
+
             <section class="login-block height-fit">
               <img src="/img/logo.png">
 
                 <% if (locals.messages.errors) { %>
                     <% messages.errors.forEach( el => { %>
                         <div class="side-padding"><%= el.msg %></div>
-                    <% }) %>    
+                    <% }) %>
                 <% } %>
                 <% if (locals.messages.info) { %>
                     <% messages.info.forEach( el => { %>
                         <div class="side-padding"><%= el.msg %></div>
-                    <% }) %>    
+                    <% }) %>
                 <% } %>
 
                 <form action="/signup" method="POST">
@@ -51,15 +51,15 @@
                         <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
                       </div>
                     <button type="submit" class="margin-5 margin-bot">Submit</button>
-                  </form>
+                </form>
             </section>
-      
+
     </main>
 
 
 
 </body>
 </html>
-    
-    
+
+
 
