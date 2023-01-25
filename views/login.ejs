@@ -14,7 +14,7 @@
   <title>AccuDriver Login</title>
 </head>
 <body>
-  
+
     <main class="login-background">
 
         <section class="login-block">
@@ -28,7 +28,7 @@
           messages.info.forEach( el => { %>
           <div><%= el.msg %></div>
           <% }) %> <% } %>
-          
+
           <form action="/login" method="POST">
 
             <div class="margin-5">
@@ -55,8 +55,19 @@
             </div>
             <button type="submit" class="margin-5">Submit</button>
           </form>
+          <button class="btn btn-primary" id="testbtn">Demo Mode</button>
+          <script>
+            document
+              .getElementById("testbtn")
+              .addEventListener("click", demoMode);
+            function demoMode() {
+              document.getElementById("exampleInputEmail1").value =
+                "test@testing.com";
+              document.getElementById("exampleInputPassword1").value = "12345678";
+            }
+          </script>
         </section>
-   
+
     </main>
 </body>
 </html>
